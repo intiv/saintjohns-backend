@@ -93,25 +93,6 @@ exports.getHomeworkById = {
 	} 	
 }
 
-exports.getHomeworkByMongoId = {
-	// auth: {
-	// 	mode: 'required',
-	// 	strategy: 'session',
-	// 	scope: ['maestro','admin','alumno']
-	// },
-	auth: false,
-	handler: function(request, reply){
-		homework.find({_id: request.params.id}, function(err, tareas){
-			if(!err && tareas){
-				return reply({tareas: tareas, success: true});
-			}else if(!err){
-				return reply({message: boom.notFound(), success: false, tipo:'notFound'});
-			}else if(err){
-				return reply({message: boom.wrap(err, 'Error obteniendo tareas'), success: false, tipo: 'error'});
-			}
-		});
-	}
-}
 
 exports.getHomeworksBySeccion = {
 	// auth: {

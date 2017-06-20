@@ -194,12 +194,6 @@ exports.endpoints = [
 
 	{
 		method: 'GET',
-		path: '/tareas/buscar/_id/{id}',
-		config: tarea.getHomeworkByMongoId
-	},
-
-	{
-		method: 'GET',
 		path: '/tareas/buscar/seccion/{seccion}',
 		config: tarea.getHomeworksBySeccion
 	},
