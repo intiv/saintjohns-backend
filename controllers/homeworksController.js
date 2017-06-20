@@ -1,6 +1,8 @@
 var homework = require('../schemas/homework.js');
 var boom = require('boom');
 var seccion = require('../schemas/seccion.js');
+var uuid = require('uuid');
+
 
 exports.createHomework = {
 	// auth: {
@@ -11,7 +13,7 @@ exports.createHomework = {
 	auth: false,
 	handler : function(request, reply) {
 		var newHomework = new homework({
-			id : request.payload.id,
+			_id : uuid.v1(),
 			seccion : request.payload.seccion,
 			titulo : request.payload.titulo,
 			fecha_de_envio : request.payload.fecha_de_envio,
@@ -79,8 +81,7 @@ exports.getHomeworkById = {
 	// },
 	auth: false,
 	handler: function(request, reply){
-		console.log(request.payload.username);
-		homework.findOne({id: request.params.id}, function(err, tareas){
+		homework.findOne({_id: request.params.id}, function(err, tareas){
 			if(!err && tareas){
 				return reply({tarea: tareas, success:true});
 			}else if(!err){
@@ -89,7 +90,7 @@ exports.getHomeworkById = {
 				return reply({message: boom.wrap(err, 'Error obteniendo tareas'), success: false});
 			}
 		});
-	}
+	} 	
 }
 
 exports.getHomeworkByMongoId = {
@@ -144,7 +145,6 @@ exports.modifyHomework = {
 			{ _id : request.params.id }, 
 			{ 
 				$set: {
-					id : request.payload.id,
 					seccion : request.payload.seccion,
 					titulo : request.payload.titulo,
 					fecha_de_envio : request.payload.fecha_de_envio,
@@ -192,3 +192,15 @@ exports.deleteHomework = {
 	}
 }
 
+exports.getHomework = {
+	// auth: {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['maestro','admin','alumno']
+	// },
+	auth: false,
+	handler: function(request, reply){
+		console.log(uuid.v1());
+		reply('hola');
+	}
+}

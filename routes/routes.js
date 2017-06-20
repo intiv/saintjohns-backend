@@ -1,6 +1,5 @@
 var boom = require('boom');
 var joi = require('joi');
-var uuid = require('node-uuid');
 var user = require('../controllers/usersController');
 var seccion = require('../controllers/seccionController');
 var tarea = require('../controllers/homeworksController');
@@ -8,11 +7,11 @@ var student = require('../controllers/studentsController');
 
 exports.endpoints = [
 	//test for files
-	{	
-		method: 'POST',
-		path: '/upload',
-		config: user.uploadFile
-	},
+	// {	
+	// 	method: 'POST',
+	// 	path: '/upload',
+	// 	config: user.probarFtp
+	// },
 	//end test for files
 	{
 		method: 'GET',
@@ -20,16 +19,19 @@ exports.endpoints = [
 		config: user.getAllUsers
 		
 	},
+
 	{
 		method: 'POST',
 		path: '/login',
 		config: user.login
 	},
+
 	{
 		method: 'PUT',
 		path: '/logout',
 		config: user.logout
 	},
+
 	{
 		method: 'POST',
 		path: '/usuarios/crear',
@@ -177,26 +179,31 @@ exports.endpoints = [
 		path: '/tareas/crear',
 		config: tarea.createHomework
 	},
+
 	{
 		method: 'GET',
 		path: '/tareas',
 		config: tarea.getAllHomeworks
 	},
+
 	{
 		method: 'GET',
 		path: '/tareas/buscar/id/{id}',
 		config: tarea.getHomeworkById
 	},
+
 	{
 		method: 'GET',
 		path: '/tareas/buscar/_id/{id}',
 		config: tarea.getHomeworkByMongoId
 	},
+
 	{
 		method: 'GET',
 		path: '/tareas/buscar/seccion/{seccion}',
 		config: tarea.getHomeworksBySeccion
 	},
+
 	{
 		method: 'GET',
 		path: '/tareas/buscar/parcial/{parcial}',
@@ -211,5 +218,10 @@ exports.endpoints = [
 		method: 'PUT',
 		path: '/tareas/modificar/{id}',
 		config: tarea.modifyHomework
+	},
+	{
+		method: 'GET',
+		path: '/tarea',
+		config: tarea.getHomework
 	}
 ];

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var HomeworkSchema = new mongoose.Schema({
-	id : String,
+	_id : String,
 	seccion: String,
 	titulo: String,
 	descripcion: String,

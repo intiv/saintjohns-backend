@@ -3,6 +3,9 @@ var student = require('../schemas/alumno');
 var joi = require('joi');
 var SHA3 = require('crypto-js/sha3');
 var boom = require('boom');
+// var client = require('ftp');
+// var fs = require('fs');
+// var c = new Client();
 // var gclient = require('googleapis');
 // var oauth2=gclient.auth.OAuth2;
 // var oauth2client = new oauth2(
@@ -265,25 +268,40 @@ exports.deleteUser = {//added
 // 	);
 // }
 
-exports.uploadFile = {
-	handler: function(request, reply){
-		var url=oauth2client.generateAuthUrl({
-			access_type: 'online',
-			scopes: ['https://www.googleapis.com/auth/drive']
-		});
-		console.log(url);
-		oauth2client.getToken
-		jwtClient.authorize(function(err, tokens) {
-			if (err) {
-				return reply("Error authorizing with JWT, "+err);
-			}
-			var drive = gclient.drive({
-				version: 'v2',
-				auth: jwtClient
-			});
-			insertTest(drive);
-			return reply('FUNCIONO (probably not)')
-		});
+// exports.uploadFile = {
+// 	handler: function(request, reply){
+// 		var url=oauth2client.generateAuthUrl({
+// 			access_type: 'online',
+// 			scopes: ['https://www.googleapis.com/auth/drive']
+// 		});
+// 		console.log(url);
+// 		oauth2client.getToken
+// 		jwtClient.authorize(function(err, tokens) {
+// 			if (err) {
+// 				return reply("Error authorizing with JWT, "+err);
+// 			}
+// 			var drive = gclient.drive({
+// 				version: 'v2',
+// 				auth: jwtClient
+// 			});
+// 			insertTest(drive);
+// 			return reply('FUNCIONO (probably not)')
+// 		});
 	
-	}
-}
+// 	}
+// }
+
+// exports.probarFTP = {
+// 	handler: function(request, reply){
+// 		c.on('ready', function(){
+// 			c.list(function(err, list){
+// 				if(err){
+// 					throw err;
+// 				}else{
+// 					console.dir(list);
+// 					c.end();
+// 				}
+// 			});
+// 		});
+// 	}
+// }
