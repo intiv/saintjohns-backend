@@ -4,7 +4,7 @@ var user = require('../controllers/usersController');
 var seccion = require('../controllers/seccionController');
 var tarea = require('../controllers/homeworksController');
 var student = require('../controllers/studentsController');
-
+var uuid = require('uuid');
 exports.endpoints = [
 	//test for files
 	// {	
