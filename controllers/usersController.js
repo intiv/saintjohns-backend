@@ -37,6 +37,12 @@ jwtClient=new gclient.auth.JWT(
 //added = agregado a routes
 exports.createUser = {//added
 	auth: false,
+	validate : {
+		payload : {
+			usuario: joi.string().required().min(3).max(20),
+			contrasena: joi.string().required().min(3).max(20)		
+		}
+	},
 	handler : function(request, reply){
 		if(request.payload.tipo === 'maestro'||request.payload.tipo === 'padre'||request.payload.tipo ==='alumno'||request.payload.tipo==='admin'){
 			var newUser = new user({
@@ -75,12 +81,9 @@ exports.login = {
   },
   handler: function(request, reply) {
     var contrasena = String(SHA3(request.payload.contrasena));
-    console.log(contrasena);
     user.find({usuario: request.payload.usuario, contrasena: contrasena}, function(err, User){
-
       	if(!err && User){
         if(User.length > 0){
-          console.log(User[0]);
           request.cookieAuth.set(User[0]);
           return reply({usuario: User[0].usuario, scope: User[0].scope, success: true, message: 'Login hecho exitosamente'});
         }else{
@@ -135,6 +138,25 @@ exports.getUserById = {//added
 				return reply({message: boom.notFound(), success: false});
 			}else if(err){
 				return reply({message: boom.wrap(err,'Error obteniendo el usuario de la bd (id)'), success: false});
+			}
+		});
+	}
+}
+
+exports.getUserByUsername={
+	auth: {
+		mode: 'required',
+		strategy: 'session',
+		scope: ['alumno', 'maestro', 'admin']
+	},
+	handler: function(request, reply){
+		user.find({usuario: request.params.usuario}, function(err, Usuario){
+			if(!err && Usuario){
+				return reply({usuario: Usuario, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false, tipo:'notFound'});
+			}else if(err){
+				return reply({message: boom.wrap(err, 'Error cargando el usuario'), success: false, tipo:'error'});
 			}
 		});
 	}

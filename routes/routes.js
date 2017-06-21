@@ -58,6 +58,12 @@ exports.endpoints = [
 
 	{
 		method: 'GET',
+		path: '/usuario/{usuario}',
+		config: user.getUserByUsername
+	},
+
+	{
+		method: 'GET',
 		path: '/usuarios/maestros/{id}',
 		config: user.getTeacherById
 	},

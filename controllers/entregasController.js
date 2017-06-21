@@ -4,7 +4,7 @@ var boom = require('boom');
 exports.createEntrega = {
 	// auth: {
 	// 	mode: 'required',
-	// 	type: 'session',
+	// 	strategy: 'session',
 	// 	scope: ['alumno']
 	// },
 	auth: false, 
@@ -27,7 +27,7 @@ exports.createEntrega = {
 exports.getAllEntregas = {
 	// auth: {
 	// 	mode: 'required',
-	// 	type: 'session',
+	// 	strategy: 'session',
 	// 	scope: ['alumno']
 	// },
 	auth: false,
@@ -47,7 +47,7 @@ exports.getAllEntregas = {
 exports.getEntregasByTarea = {
 	// auth: {
 	// 	mode: 'required',
-	// 	type: 'session',
+	// 	strategy: 'session',
 	// 	scope: ['maestro']
 	// },
 	auth: false,
@@ -67,7 +67,7 @@ exports.getEntregasByTarea = {
 exports.modifyEntrega = {
 	// auth: {
 	// 	mode: 'required',
-	// 	type: 'session',
+	// 	strategy: 'session',
 	// 	scope: ['admin','alumno']
 	// },
 	auth: false,
@@ -98,7 +98,7 @@ exports.modifyEntrega = {
 exports.deleteEntrega = {
 	// auth: {
 	// 	mode: 'required',
-	// 	type: 'session',
+	// 	strategy: 'session',
 	// 	scope: ['admin']
 	// },
 	auth: false,
