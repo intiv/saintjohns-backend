@@ -278,3 +278,28 @@ exports.getSeccion = {
 		});
 	}
 }
+
+exports.getSeccionesForUser = {
+	// auth : {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['admin','alumno','maestro']
+	// },
+	auth: false,
+	handler: function(request, reply){
+		seccion.find({
+			grado: request.query.grado,
+			ano: request.query.year,
+			apartado: request.query.apartado
+		}, function(err, Secciones){
+			if(!err && Secciones){
+				return reply({secciones: Secciones, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false, tipo: 'notFound'});
+			}else if(err){
+				return reply({message: boom.wrap(err, 'Error obteniendo Seccion'), success: false, tipo:'error'});
+			}
+		});
+
+	}
+}

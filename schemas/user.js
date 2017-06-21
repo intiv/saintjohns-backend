@@ -8,10 +8,10 @@ var UserSchema = new mongoose.Schema({
 	tipo: String,
 	usuario: {type: String, required: true},
 	contrasena: {type: String, required: true},
-	fecha_de_nacimiento:String,
-	telefono:String,
+	fecha_de_nacimiento: String,
+	telefono: String,
 	direccion: String,
-	correo:String,
+	correo: String,
 	scope: [String]
 });
 
