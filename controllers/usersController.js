@@ -234,7 +234,7 @@ exports.modifyUser = {//added
 					apellido : request.payload.apellido,
 					usuario : request.payload.usuario,
 					tipo : request.payload.tipo,
-					contrasena : request.payload.contrasena,
+					contrasena : SHA3(request.payload.contrasena),
 					fecha_de_nacimiento : request.payload.fecha,
 					telefono : request.payload.telefono,
 					direccion : request.payload.direccion,
