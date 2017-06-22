@@ -107,6 +107,11 @@ exports.endpoints = [
 		path: '/alumnos/buscar/id/{id}',
 		config: student.getStudentById
 	},
+	{
+		method: 'GET',
+		path: '/alumnos/buscar/idu/{id}',
+		config: student.getStudentByIdu
+	},
 
 	{
 		method: 'GET',
@@ -237,5 +242,21 @@ exports.endpoints = [
 		method: 'GET',
 		path: '/tarea',
 		config: tarea.getHomework
+	},
+	{
+		method: 'GET',
+		path: '/usuarios/filtro/{con}',
+		config: user.getFiltro
+	},
+	{
+		method: 'GET',
+		path: '/usuarios/filtro1/{con}',
+		config: user.getFiltro1
+	},
+	{
+		method: 'GET',
+		path: '/usuarios/alumnos',
+		config: user.getStudents
 	}
+
 ];

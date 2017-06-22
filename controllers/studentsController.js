@@ -63,6 +63,25 @@ exports.getStudentById = {//added
 		});
 	}
 }
+exports.getStudentByIdu = {//added
+	// auth: {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['maestro','admin','alumno']
+	// },
+	auth: false,
+	handler : function(request, reply){
+		student.findOne({id_user: request.params.id_user},function(err, Student){
+			if(!err && Student){
+				return reply({student: Student, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false, tipo: 'notFound'});
+			}else if(err){
+				return reply({message: boom.wrap(err,'Error obteniendo el estudiante de la bd (id)'), success: false, tipo: 'error'});
+			}
+		});
+	}
+}
 
 exports.getStudentByAccount = {//added
 	// auth: {

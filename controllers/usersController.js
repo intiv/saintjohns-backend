@@ -56,7 +56,7 @@ exports.createUser = {//added
 				if(err){
 					return reply({message: boom.notAcceptable('Username must be unique: ' + err), success: false});
 				}else{
-					return reply({message: 'User inserted succesfully', success: true});
+					return reply({ user:newUser ,message: 'User inserted succesfully', success: true});
 				}
 			});
 		}else{
@@ -279,6 +279,53 @@ exports.deleteUser = {//added
 				}
 			}
 		);
+	}
+}
+exports.getFiltro = {//added
+	handler : function(request, reply){
+
+		user.find({"apellido":{$regex: request.params.con},tipo:"maestro"}, function(err, users){
+			if(!err && users){
+				return reply({users: users, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: true});
+			}else if(err){
+				return reply({message: boom.wrap(err, 'Error obteniendo usuarios de la bd'), success: true});
+			}
+		});
+	}
+}
+exports.getFiltro1 = {//added
+	handler : function(request, reply){
+
+		user.find({"apellido":{$regex: request.params.con},tipo:"alumno"}, function(err, users){
+			if(!err && users){
+				return reply({users: users, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: true});
+			}else if(err){
+				return reply({message: boom.wrap(err, 'Error obteniendo usuarios de la bd'), success: true});
+			}
+		});
+	}
+}
+exports.getStudents = {
+	// auth: {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['admin']
+	// },
+	auth: false,
+	handler : function(request, reply){
+		user.find({tipo: 'alumno'}, function(err, Maestros){
+			if(!err && Maestros){
+				return reply({alumnos : Maestros, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false});
+			}else if(err){
+				return reply({message: boom.wrap(err,'Error obteniendo maestros'), success: false});
+			}
+		});
 	}
 }
 
