@@ -37,12 +37,6 @@ jwtClient=new gclient.auth.JWT(
 //added = agregado a routes
 exports.createUser = {//added
 	auth: false,
-	validate : {
-		payload : {
-			usuario: joi.string().required().min(3).max(20),
-			contrasena: joi.string().required().min(3).max(20)		
-		}
-	},
 	handler : function(request, reply){
 		if(request.payload.tipo === 'maestro'||request.payload.tipo === 'padre'||request.payload.tipo ==='alumno'||request.payload.tipo==='admin'){
 			var newUser = new user({

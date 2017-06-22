@@ -175,6 +175,11 @@ exports.endpoints = [
 		config: seccion.assignTeacher
 	},
 	{
+		method: 'PUT',
+		path: '/secciones/info/{id}',
+		config: seccion.modifyInfo
+	},
+	{
 		method: 'DELETE',
 		path: '/secciones/borrar/{id}',
 		config: seccion.deleteSection

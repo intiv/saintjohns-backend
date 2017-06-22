@@ -278,3 +278,25 @@ exports.getSeccion = {
 		});
 	}
 }
+
+exports.modifyInfo = {
+	auth: false,
+	handler: function(request, reply){
+		seccion.update(
+			{_id: request.params.id},
+			{
+				$set: {
+					info: request.payload.info
+				}
+			},
+			function(err){
+				if(err){
+					return reply({message: boom.wrap(err, 'Error modificando info de la seccion'), success: false});
+				}else{
+					return reply({message: 'Informacion de la seccion modificada con exito!', success: true});
+				}
+			}
+		);
+	}
+}
+//modify
