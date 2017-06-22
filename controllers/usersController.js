@@ -84,8 +84,8 @@ exports.login = {
     user.find({usuario: request.payload.usuario, contrasena: contrasena}, function(err, User){
       	if(!err && User){
         if(User.length > 0){
-          request.cookieAuth.set(User[0]);
-          return reply({usuario: User[0].usuario, scope: User[0].scope, success: true, message: 'Login hecho exitosamente'});
+        	request.cookieAuth.set(User[0]);
+        	return reply({usuario: User[0].usuario, scope: User[0].scope, cuenta:User[0]._id,  success: true, message: 'Login hecho exitosamente'});
         }else{
           return reply({success: false, message: boom.notFound(),tipo: 'length'});
         }
@@ -143,14 +143,35 @@ exports.getUserById = {//added
 	}
 }
 
-exports.getUserByUsername={
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['alumno', 'maestro', 'admin']
-	},
+exports.getStudent = {
+	// auth: {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['alumno', 'maestro','admin']
+	// },
+	auth: false,
 	handler: function(request, reply){
-		user.find({usuario: request.params.usuario}, function(err, Usuario){
+		student.findOne({id_user: request.params.id}, function(err, Student){
+			if(!err && Student){
+				return reply({alumno: Student, success: true});	
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false, tipo: 'notFound'});
+			}else if(err){
+				return reply({message: boom.wrap(err,'Error obteniendo el estudiante de la bd (id)'), success: false, tipo: 'error'});
+			}
+		});
+	}
+}
+
+exports.getUserByUsername = {
+	// auth: {
+	// 	mode: 'required',
+	// 	strategy: 'session',
+	// 	scope: ['alumno', 'maestro', 'admin']
+	// },
+	auth: false,
+	handler: function(request, reply){
+		user.findOne({_id: request.params.usuario}, function(err, Usuario){
 			if(!err && Usuario){
 				return reply({usuario: Usuario, success: true});
 			}else if(!err){

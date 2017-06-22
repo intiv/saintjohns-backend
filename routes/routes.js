@@ -61,7 +61,11 @@ exports.endpoints = [
 		path: '/usuario/{usuario}',
 		config: user.getUserByUsername
 	},
-
+	{
+		method: 'GET',
+		path: '/usuario/alumno/{id}',
+		config: user.getStudent
+	},
 	{
 		method: 'GET',
 		path: '/usuarios/maestros/{id}',
@@ -121,7 +125,12 @@ exports.endpoints = [
 		path: '/secciones',
 		config: seccion.getAllSections
 	},
+	{
+		method: 'GET',
+		path: '/usuario/secciones',
+		config: seccion.getSeccionesForUser
 
+	},
 	{
 		method: 'GET',
 		path: '/secciones/buscar/id/{id}',
