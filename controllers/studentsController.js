@@ -11,7 +11,8 @@ exports.createStudent = {//added
 		var newStudent = new student({
 			cuenta : request.payload.cuenta,
 			nombre : request.payload.nombre,
-			id_padre : request.payload.id_padre
+			id_padre : request.payload.id_padre,
+			id_user: request.payload.id_user
 		});
 		newStudent.save(function(err){
 			if(err){
@@ -117,7 +118,8 @@ exports.modifyStudent = {//added
 				$set: {
 					cuenta: request.payload.cuenta,
 					nombre: request.payload.nombre,
-					id_padre: request.payload.id_padre
+					id_padre: request.payload.id_padre,
+					id_user: request.payload.id_user
 				}
 			},
 			function(err){
