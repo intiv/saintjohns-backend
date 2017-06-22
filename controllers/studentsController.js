@@ -71,7 +71,7 @@ exports.getStudentByIdu = {//added
 	// },
 	auth: false,
 	handler : function(request, reply){
-		student.findOne({id_user: request.params.id_user},function(err, Student){
+		student.findOne({id_user: request.params.id},function(err, Student){
 			if(!err && Student){
 				return reply({student: Student, success: true});
 			}else if(!err){
