@@ -138,6 +138,11 @@ exports.endpoints = [
 	},
 	{
 		method: 'GET',
+		path: '/seccion/buscar/alumnos',
+		config: seccion.getStudentsBySeccion
+	},
+	{
+		method: 'GET',
 		path: '/secciones/buscar/id/{id}',
 		config: seccion.getSectionById
 	},

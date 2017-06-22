@@ -1,4 +1,5 @@
- var seccion = require('../schemas/seccion');
+var seccion = require('../schemas/seccion');
+var alumno = require('../schemas/alumno');
 var SHA3 = require('crypto-js/sha3');
 var boom = require('boom');
 
@@ -326,3 +327,19 @@ exports.getSeccionesForUser = {
 	}
 }
 
+exports.getStudentsBySeccion = {
+	auth: false,
+	handler: function(request, reply){
+		var acc=request.query.grado+'_'+request.query.apartado+'_'+request.query.year;
+		console.log(acc);
+		alumno.find({cuenta: acc}, function(err, Alumnos){
+			if(!err && Alumnos){
+				return reply({alumnos: Alumnos, success: true});
+			}else if(!err){
+				return reply({message: boom.notFound(), success: false, tipo: 'notFound'});
+			}else if(err){
+				return reply({message: boom.wrap(err, 'Error obteniendo alumnos'), success: false, tipo:'error'});
+			}
+		});
+	}
+}
