@@ -180,7 +180,7 @@ exports.endpoints = [
 	},
 	{
 		method: 'PUT',
-		path: '/secciones/asignarMaestro/{maestro}',
+		path: '/secciones/asignarMaestro/{id}',
 		config: seccion.assignTeacher
 	},
 	{

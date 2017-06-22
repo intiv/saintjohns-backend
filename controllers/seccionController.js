@@ -237,7 +237,7 @@ exports.assignTeacher = {//added
 	auth: false,
 	handler : function(request, reply){
 		seccion.update(
-			{ cuenta: request.params.cuenta },
+			{ _id: request.params.id },
 			{
 				$set : {
 					maestro: request.payload.maestro
